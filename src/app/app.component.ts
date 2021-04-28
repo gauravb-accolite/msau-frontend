@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
@@ -8,7 +8,7 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title: String = 'Morgan Stanley - AU';
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -16,8 +16,9 @@ export class AppComponent {
   ngOnInit() {
     if(!this.authService.getUser()) {
       this.router.navigateByUrl('/login')
+    } else {
+      this.router.navigateByUrl('/core')
     }
-    console.log(this.authService.getUser());
   }
 
 }

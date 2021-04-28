@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
-import { CoreComponent } from './core.component';
+import { OnboardingComponent } from './onboarding/onboarding.component';
+import { NotImplementedComponent } from './not-implemented/not-implemented.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
-  declarations: [CoreComponent],
+  declarations: [OnboardingComponent, NotImplementedComponent, NavbarComponent],
   imports: [
     CommonModule,
     CoreRoutingModule
