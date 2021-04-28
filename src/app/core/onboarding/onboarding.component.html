@@ -1,2 +1,23 @@
 <app-navbar></app-navbar>
-<p>onboarding works!</p>
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Name</th>
+      <th scope="col">Demand ID</th>
+      <th scope="col">Location</th>
+      <th scope="col">Onboarding Start</th>
+      <th scope="col">Onboarding End</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let onboardee of onboardees" (click)="displayOnboardee(onboardee.email)">
+      <td>{{onboardee.email}}</td>
+      <td>{{onboardee.name}}</td>
+      <td>{{onboardee.demandId}}</td>
+      <td>{{extractLocation(onboardee.demandId)}}</td>
+      <td>{{onboardee.onboardingStart}}</td>
+      <td>{{onboardee.onboardingEnd}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { CoreRoutingModule } from './core-routing.module';
 import { OnboardingComponent } from './onboarding/onboarding.component';
@@ -11,7 +12,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   declarations: [OnboardingComponent, NotImplementedComponent, NavbarComponent],
   imports: [
     CommonModule,
-    CoreRoutingModule
+    CoreRoutingModule,
+    HttpClientModule
   ]
 })
 export class CoreModule { }
