@@ -6,10 +6,11 @@ import { CoreRoutingModule } from './core-routing.module';
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { NotImplementedComponent } from './not-implemented/not-implemented.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { EditOnboardeeComponent } from './edit-onboardee/edit-onboardee.component';
 
 
 @NgModule({
-  declarations: [OnboardingComponent, NotImplementedComponent, NavbarComponent],
+  declarations: [OnboardingComponent, NotImplementedComponent, NavbarComponent, EditOnboardeeComponent],
   imports: [
     CommonModule,
     CoreRoutingModule,

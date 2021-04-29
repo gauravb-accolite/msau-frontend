@@ -24,6 +24,4 @@ export class OnboardingComponent implements OnInit {
 
   extractLocation = (demandId: String): String => (demandId.slice(0, 3) == 'MUM' ? 'Mumbai' : 'Bangalore')
 
-  displayOnboardee = (email: String): void => console.log(email)
-
 }

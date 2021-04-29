@@ -1,6 +1,13 @@
 <app-navbar></app-navbar>
+
+<br>
+<p class="display-4">Morgan Stanley Onboardees</p>
+
+<button type="button" class="btn btn-primary" routerLink="new">Add new onboardee</button>
+<br><br>
+
 <table class="table table-hover">
-  <thead class="thead-dark">
+  <thead class="thead-light">
     <tr>
       <th scope="col">Email</th>
       <th scope="col">Name</th>
@@ -11,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let onboardee of onboardees" (click)="displayOnboardee(onboardee.email)">
+    <tr *ngFor="let onboardee of onboardees" routerLink={{onboardee.email}}>
       <td>{{onboardee.email}}</td>
       <td>{{onboardee.name}}</td>
       <td>{{onboardee.demandId}}</td>
