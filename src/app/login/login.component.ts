@@ -28,9 +28,4 @@ export class LoginComponent implements OnInit {
   signInWithGoogle(): void {
     this.googleLoginService.signIn(GoogleLoginProvider.PROVIDER_ID)
   }
-
-  signOut(): void {
-    this.googleLoginService.signOut();
-    this.authService.unsetUser()
-  }
 }
