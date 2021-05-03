@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EditOnboardeeComponent } from './edit-onboardee/edit-onboardee.component';
+import { NewOnboardeeComponent } from './new-onboardee/new-onboardee.component';
 
 import { NotImplementedComponent } from './not-implemented/not-implemented.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'onboarding',
     component: OnboardingComponent
+  },
+  {
+    path: 'onboarding/new',
+    component: NewOnboardeeComponent
   },
   {
     path: 'onboarding/:email',
