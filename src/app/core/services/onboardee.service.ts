@@ -58,4 +58,14 @@ export class OnboardeeService {
     );
   }
 
+  deleteOnboardee = (email: string): Observable<number> => {
+    let payload = { 'email': email }
+
+    return this.http.post<number>('http://localhost:8080/deleteOnboardee', payload)
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
+  }
+
 }

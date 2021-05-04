@@ -95,15 +95,31 @@ export class EditOnboardeeComponent implements OnInit {
       responseCode => {
         let navigationExtras: NavigationExtras
         if (responseCode == 0) {
-          console.log('onboardee creation failed');
-          navigationExtras = {state: {error: 'Could not add the onboardee'} }
+          console.log('onboardee updation failed');
+          navigationExtras = {state: {error: 'Could not update the onboardee'} }
         } else {
           console.log('onboardee creation success');
-          navigationExtras = {state: {success: 'Onboardee added successfully'} }
+          navigationExtras = {state: {success: 'Onboardee updated successfully'} }
         }
         this.router.navigateByUrl('/core', navigationExtras)
       }
     )
-  }  
+  }
+
+  deleteOnboardee() {
+    this.onboardeeService.deleteOnboardee(this.email).subscribe(
+      responseCode => {
+        let navigationExtras: NavigationExtras
+        if (responseCode == 0) {
+          console.log('onboardee deletion failed');
+          navigationExtras = {state: {error: 'Could not delete the onboardee'} }
+        } else {
+          console.log('onboardee creation success');
+          navigationExtras = {state: {success: 'Onboardee deleted successfully'} }
+        }
+        this.router.navigateByUrl('/core', navigationExtras)
+      }
+    )
+  }
 
 }
