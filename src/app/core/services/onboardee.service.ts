@@ -32,4 +32,12 @@ export class OnboardeeService {
     );    
   }
 
+  addNewOnboardee = (newOnboardee: Onboardee): Observable<number> => {
+    return this.http.post<number>('http://localhost:8080/addOnboardee', newOnboardee)
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
+  }
+
 }

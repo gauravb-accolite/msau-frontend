@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Navigation, Router } from '@angular/router';
 import { Onboardee } from '../entities/onboardee';
 import { OnboardeeService } from '../services/onboardee.service';
 
@@ -10,8 +11,20 @@ import { OnboardeeService } from '../services/onboardee.service';
 export class OnboardingComponent implements OnInit {
 
   onboardees: Array<Onboardee>
+  error: string
+  success: string
 
-  constructor(private onboardeeService: OnboardeeService) { }
+  constructor(private onboardeeService: OnboardeeService, private router: Router) { 
+    const nav: Navigation = this.router.getCurrentNavigation()
+    const state = nav.extras.state
+    if (state) {
+      if ('error' in state) {
+        this.error = state.error
+      } else if ('success' in state) {
+        this.success = state.success
+      }  
+    }
+  }
 
   ngOnInit(): void {
     this.onboardeeService.getAllOnboardees().subscribe(

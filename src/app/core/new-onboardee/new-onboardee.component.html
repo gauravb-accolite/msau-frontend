@@ -5,7 +5,7 @@
 <div class="p-2">
   <p class="display-4">Details of new Onboardee</p>
 
-  <form [formGroup]="onboardeeForm" (ngSubmit)="onSubmit()" novalidate>
+  <form [formGroup]="onboardeeForm" (ngSubmit)="onSubmit(onboardeeForm.getRawValue())" novalidate>
     <div class="form-group">
       <label for="email">Email Address</label>
       <input type="email" class="form-control" id="email" name="email" formControlName="email" placeholder="Enter email">

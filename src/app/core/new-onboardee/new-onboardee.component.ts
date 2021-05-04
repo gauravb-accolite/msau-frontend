@@ -8,6 +8,9 @@ import { Demand } from '../entities/demand';
 import { Employee } from '../entities/employee';
 import { DemandService } from '../services/demand.service';
 import { EmployeeService } from '../services/employee.service';
+import { OnboardeeService } from '../services/onboardee.service';
+import { Onboardee } from '../entities/onboardee';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-onboardee',
@@ -20,7 +23,7 @@ export class NewOnboardeeComponent implements OnInit {
   employee: Employee
   demand: Demand
 
-  constructor(private emailValidator: OnboardeeEmailValidatorService, private employeeService: EmployeeService, private demandIdValidator: OnboardeeDemandIdValidatorService, private demandService: DemandService) { }
+  constructor(private emailValidator: OnboardeeEmailValidatorService, private employeeService: EmployeeService, private demandIdValidator: OnboardeeDemandIdValidatorService, private demandService: DemandService, private onboardeeService: OnboardeeService, private router: Router) { }
 
   ngOnInit(): void {
     // subscrible to event for detecting email changes
@@ -71,8 +74,20 @@ export class NewOnboardeeComponent implements OnInit {
     skills: new FormControl()
   })
 
-  onSubmit() {
-    console.log(this.onboardeeForm.value);
+  onSubmit(newOnboardee: Onboardee) {
+    this.onboardeeService.addNewOnboardee(newOnboardee).subscribe(
+      responseCode => {
+        let navigationExtras: NavigationExtras
+        if (responseCode == 0) {
+          console.log('onboardee creation failed');
+          navigationExtras = {state: {error: 'Could not add the onboardee'} }
+        } else {
+          console.log('onboardee creation success');
+          navigationExtras = {state: {success: 'Onboardee added successfully'} }
+        }
+        this.router.navigateByUrl('/core', navigationExtras)
+      }
+    )
   }  
 
 }
