@@ -48,9 +48,7 @@ export class NewOnboardeeComponent implements OnInit {
     this.onboardeeForm.get('demandId').valueChanges.subscribe(val => {
 
       if (this.onboardeeForm.controls.demandId.valid) {
-        console.log('valid', val)
-
-        // get employee details
+        // get demand details
         this.demandService.getDemand(val).subscribe(
           (demand: Demand) => {
             this.demand = demand

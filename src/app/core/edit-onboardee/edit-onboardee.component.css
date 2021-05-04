@@ -1,0 +1,11 @@
+.form-row .col .form-check-input {
+  margin-left: 0;
+}
+
+.form-row .col .form-check-label {
+  margin-left: 1.25em;
+}
+
+.error-message {
+  color: red;
+}

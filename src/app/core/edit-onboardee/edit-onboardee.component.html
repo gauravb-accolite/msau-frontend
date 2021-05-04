@@ -1,38 +1,86 @@
-<form [formGroup]="onboardeeForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="email">Email Address</label>
-    <input type="email" class="form-control" id="email" name="email" formControlName="email" placeholder="Enter email">
-  </div>
+<app-navbar></app-navbar>
 
-  <div class="form-group">
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="Name of onboardee" readonly>
-  </div>
+<br>
 
-  <div class="form-group">
-    <label for="phone">Phone</label>
-    <input type="text" class="form-control" id="phone" name="phone" formControlName="phone" placeholder="Contact number of onboardee" readonly>
-  </div>
+<div class="p-2">
+  <p class="display-4">{{onboardee?.name}}</p>
 
-  <div class="form-group">
-    <label for="demandId">Demand ID</label>
-    <input type="text" class="form-control" id="demandId" name="demandId" formControlName="demandId" placeholder="Demand ID">
-  </div>
+  <form [formGroup]="onboardeeForm" (ngSubmit)="onSubmit(onboardeeForm.getRawValue())" novalidate>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" class="form-control" id="email" name="email" formControlName="email" placeholder="Enter email" readonly>
+    </div>
 
-  <div class="form-group">
-    <label for="msHiringManager">MS Hiring Manager</label>
-    <input type="text" class="form-control" id="msHiringManager" name="msHiringManager" formControlName="msHiringManager" placeholder="Name of the hiring manager from MS" readonly>
-  </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" formControlName="name" placeholder="Name of onboardee" readonly>
+    </div>
 
-  <div class="form-group">
-    <label for="onboardingStart">Onboarding Start Date</label>
-    <input type="date" class="form-control" id="onboardingStart" name="onboardingStart" formControlName="onboardingStart" placeholder="Tentative starting date of onboarding">
-  </div>
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" class="form-control" id="phone" name="phone" formControlName="phone" placeholder="Contact number of onboardee" readonly>
+    </div>
 
-  <div class="form-group">
-    <label for="onboardingEnd">Onboarding End Date</label>
-    <input type="date" class="form-control" id="onboardingEnd" name="onboardingEnd" formControlName="onboardingEnd" placeholder="Tentative ending date of onboarding">
-  </div>
+    <div class="form-group">
+      <label for="demandId">Demand ID</label>
+      <input type="text" class="form-control" id="demandId" name="demandId" formControlName="demandId" placeholder="Demand ID">
+      <small *ngIf="!onboardeeForm.controls.demandId?.valid && (onboardeeForm.controls.demandId?.dirty || onboardeeForm.controls.demandId?.touched)" class="form-text error-message">
+        <span [hidden]="!onboardeeForm.controls.demandId.errors.required" >Demand ID is needed</span>
+        <span [hidden]="!onboardeeForm.controls.demandId.errors.demandID" >Please use a valid Demand ID</span>
+      </small>
+    </div>
 
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <div class="form-group">
+      <label for="msHiringManager">MS Hiring Manager</label>
+      <input type="text" class="form-control" id="msHiringManager" name="msHiringManager" formControlName="msHiringManager" placeholder="Name of the hiring manager from MS" readonly>
+    </div>
+
+    <div class="form-group">
+      <label for="onboardingStart">Onboarding Start Date</label>
+      <input type="date" class="form-control" id="onboardingStart" name="onboardingStart" formControlName="onboardingStart" placeholder="Tentative starting date of onboarding">
+      <small *ngIf="!onboardeeForm.controls.onboardingStart?.valid && (onboardeeForm.controls.onboardingStart?.dirty || onboardeeForm.controls.onboardingStart?.touched)" class="form-text error-message">
+        <span [hidden]="!onboardeeForm.controls.onboardingStart.errors.required" >Onboarding start date is needed</span>
+        <span [hidden]="!onboardeeForm.controls.onboardingStart.errors.invalidDateDiff" >Onboarding cannot start after ending</span>
+        <span [hidden]="!onboardeeForm.controls.onboardingStart.errors.pastDate" >Onboarding cannot start in the past</span>
+      </small>
+    </div>
+
+    <div class="form-group">
+      <label for="onboardingEnd">Onboarding End Date</label>
+      <input type="date" class="form-control" id="onboardingEnd" name="onboardingEnd" formControlName="onboardingEnd" placeholder="Tentative ending date of onboarding">
+      <small *ngIf="!onboardeeForm.controls.onboardingEnd?.valid && (onboardeeForm.controls.onboardingEnd?.dirty || onboardeeForm.controls.onboardingEnd?.touched)" class="form-text error-message">
+        <span [hidden]="!onboardeeForm.controls.onboardingEnd.errors.required" >Onboarding end date is needed</span>
+        <span [hidden]="!onboardeeForm.controls.onboardingEnd.errors.invalidDateDiff" >Onboarding cannot end before starting</span>
+        <span [hidden]="!onboardeeForm.controls.onboardingEnd.errors.pastDate" >Onboarding cannot end in the past</span>
+      </small>
+    </div>
+
+    <div class="form-group form-row">
+
+      <div class="col">
+        <input class="form-check-input" type="checkbox" value="" id="bgCheck" name="bgCheck" formControlName="bgCheck">
+        <label class="form-check-label" for="bgCheck">
+          Background Check
+        </label>
+      </div>
+
+      <div class="col">
+        <input class="form-check-input" type="checkbox" value="" id="training" name="training" formControlName="training">
+        <label class="form-check-label" for="training">
+          Training
+        </label>
+      </div>
+
+      <div class="col">
+        <input class="form-check-input" type="checkbox" value="" id="project" name="project" formControlName="project">
+        <label class="form-check-label" for="project">
+          Project
+        </label>
+      </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-primary" [hidden]="!onboardeeForm.dirty" [disabled]="!onboardeeForm.valid">Submit</button>
+  </form>
+
+</div>

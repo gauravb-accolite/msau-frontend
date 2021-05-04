@@ -25,7 +25,17 @@ export class OnboardeeService {
   }
 
   getAllOnboardees = () : Observable<any> => {
-    return this.http.get<Onboardee>('http://localhost:8080/onboardees')
+    return this.http.get('http://localhost:8080/onboardees')
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );    
+  }
+
+  getOnboardee = (email: string) : Observable<Onboardee> => {
+    let params = { 'email': email }
+
+    return this.http.get<Onboardee>('http://localhost:8080/onboardee', {params: params})
     .pipe(
       retry(3), // retry a failed request up to 3 times
       catchError(this.handleError) // then handle the error
@@ -34,6 +44,14 @@ export class OnboardeeService {
 
   addNewOnboardee = (newOnboardee: Onboardee): Observable<number> => {
     return this.http.post<number>('http://localhost:8080/addOnboardee', newOnboardee)
+    .pipe(
+      retry(3), // retry a failed request up to 3 times
+      catchError(this.handleError) // then handle the error
+    );
+  }
+
+  updateOnboardee = (changedOnboardee: Onboardee): Observable<number> => {
+    return this.http.post<number>('http://localhost:8080/updateOnboardee', changedOnboardee)
     .pipe(
       retry(3), // retry a failed request up to 3 times
       catchError(this.handleError) // then handle the error

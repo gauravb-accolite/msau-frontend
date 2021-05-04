@@ -39,8 +39,8 @@
         <td>{{onboardee.name}}</td>
         <td>{{onboardee.demandId}}</td>
         <td>{{extractLocation(onboardee.demandId)}}</td>
-        <td>{{onboardee.onboardingStart}}</td>
-        <td>{{onboardee.onboardingEnd}}</td>
+        <td>{{onboardee.onboardingStart | date:'mediumDate'}}</td>
+        <td>{{onboardee.onboardingEnd | date:'mediumDate'}}</td>
       </tr>
     </tbody>
   </table>
