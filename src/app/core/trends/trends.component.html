@@ -1,0 +1,56 @@
+<app-navbar></app-navbar>
+
+<br>
+
+<div class="p-2">
+  <p class="display-4">Onboarding Trends</p>
+
+  <div class="p-1 trend-wrapper">
+    <p class="display-6">1. Year-wise Distribution</p>
+    <ngx-charts-bar-vertical
+    [view]="view"
+    [results]="OnboardeeVYear.data"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="OnboardeeVYear.xAxisLabel"
+    [yAxisLabel]="OnboardeeVYear.yAxisLabel"
+    [legendTitle]="OnboardeeVYear.legendTitle">
+    </ngx-charts-bar-vertical>  
+  </div>
+
+  <div class="p-1 trend-wrapper">
+    <p class="display-6">2. Location-wise Distribution</p>
+    <ngx-charts-bar-vertical-2d
+      [view]="view"
+      [results]="OnboardeeVLocation.data"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="OnboardeeVLocation.xAxisLabel"
+      [yAxisLabel]="OnboardeeVLocation.yAxisLabel"
+      [legendTitle]="OnboardeeVLocation.legendTitle">
+    </ngx-charts-bar-vertical-2d>  
+  </div>
+
+  <div class="p-1 trend-wrapper">
+    <p class="display-6">3. Quarter-wise Distribution </p>
+    <ngx-charts-bar-vertical-normalized
+      [view]="view"
+      [results]="NormalizedOnboardeeVYear.data"
+      [xAxis]="showXAxis"
+      [yAxis]="showYAxis"
+      [legend]="showLegend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="NormalizedOnboardeeVYear.xAxisLabel"
+      [yAxisLabel]="NormalizedOnboardeeVYear.yAxisLabel"
+      [legendTitle]="NormalizedOnboardeeVYear.legendTitle">
+    </ngx-charts-bar-vertical-normalized>
+  </div>
+
+</div>

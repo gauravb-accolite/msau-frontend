@@ -30,7 +30,6 @@ export class OnboardingComponent implements OnInit {
     this.onboardeeService.getAllOnboardees().subscribe(
       (onboardees: Array<Onboardee>) => {
         this.onboardees = onboardees
-        console.log(this.onboardees);
       }
     )
   }

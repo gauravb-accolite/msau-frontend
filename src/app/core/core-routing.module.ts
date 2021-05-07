@@ -5,6 +5,7 @@ import { NewOnboardeeComponent } from './new-onboardee/new-onboardee.component';
 
 import { NotImplementedComponent } from './not-implemented/not-implemented.component';
 import { OnboardingComponent } from './onboarding/onboarding.component';
+import { TrendsComponent } from './trends/trends.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'onboarding/:email',
     component: EditOnboardeeComponent
+  },
+  {
+    path: 'trends',
+    component: TrendsComponent
   },
   {
     path: '',
